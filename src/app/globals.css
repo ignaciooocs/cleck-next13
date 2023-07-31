@@ -13,3 +13,7 @@
   backdrop-filter: blur(5px);
   /* Valor de desenfoque */
 }
+
+h2 {
+  font-family: var(--font-roboto);
+}

@@ -16,7 +16,7 @@ const PostNote = async () => {
       userId
     }
 
-    await fetch('http://localhost:4000/api/add',{
+    await fetch(process.env.POST_NOTE,{
       method: 'POST',
       body: JSON.stringify(newNote),
       headers: { 'Content-Type': 'application/json' }
@@ -25,14 +25,14 @@ const PostNote = async () => {
     revalidateTag('notes')
   }
   return (
-    <div className='p-6 flex flex-col items-center w-full lg:p-none lg:items-start'>
-      <form action={addNotes} className='flex flex-col items-center gap-3 border-2 p-8 w-full md:h-3/4 md:w-3/4 lg:w-full'>
+    <section className='p-6 flex flex-col items-center w-full lg:p-none'>
+      <form action={addNotes} className='flex flex-col items-center gap-3 border-2 p-8 w-full md:h-3/4 sm:w-3/4 md:w-7/12'>
         <label>Crear nota</label>
-        <input className='p-4 border-2 w-3/4 lg:w-11/12' type='text' name='title' placeholder='titulo jeje'/>
-        <input className='p-4 border-2 w-3/4 lg:w-11/12' type='text' name='content' placeholder='contenido de la nota' />
+        <textarea className='p-4 border-2 w-full lg:w-11/12' name='title' placeholder='titulo jeje'/>
+        <textarea className='p-4 border-2 w-full lg:w-11/12' name='content' placeholder='contenido de la nota' />
         <button>Guardar</button>
       </form>
-    </div>
+    </section>
   )
 }
 

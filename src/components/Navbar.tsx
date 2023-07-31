@@ -1,32 +1,34 @@
-import Link from 'next/link'
-import { UserButton } from "@clerk/nextjs"
-import { IoPlanetOutline } from "react-icons/io5";
+'use client'
 
-const routes = [
-  { title: 'Home', href: '/' },
-  { title: 'Dashboard', href: '/dashboard' },
-  { title: 'About', href: '/about' }
-]
+import Link from 'next/link'
+import { UserButton, useUser } from "@clerk/nextjs"
+import { IoPlanetOutline } from "react-icons/io5"
+import Navuser from './skeletons/Navuser'
+import RouteLogout from './routeLogout'
 
 const Navbar = () => {
+  const user = useUser()
   return (
-    <header className='border-2 fixed w-full t-0 transparent'>
-      <nav className='flex justify-between'>
-        <div className='p-4'>
-          <IoPlanetOutline className='text-3xl text-blue-500 font-bold' />
-        </div>
-        <ul className='flex gap-4 items-center font-sans font-medium'>
-          {routes.map((rute) => (
-            <li key={rute.title}>
-              <Link href={rute.href}>{rute.title}</Link>
+    <nav className='flex justify-between items-center'>
+      <Link href='/' className=' flex gap-2 p-4 items-center'>
+        <IoPlanetOutline className='text-3xl text-blue-500 font-bold' />
+        <span className='font-bold text-blue-500'>NoteSpace</span>
+      </Link>
+      {!user.isLoaded
+        ? <Navuser />
+        : (user.isSignedIn
+          ? <ul className='flex gap-2 items-center font-sans font-medium'>
+            <li>
+              <Link href='/dashboard'>Dashboard</Link>
             </li>
-          ))}
-        <div className='p-4'>
-        <UserButton />
-        </div>
-        </ul>
-      </nav>
-    </header>
+            <li className='p-4'>
+              <UserButton afterSignOutUrl='/' />
+            </li>
+          </ul>
+          : <RouteLogout class='' />
+        )
+      }
+    </nav>
   )
 }
 

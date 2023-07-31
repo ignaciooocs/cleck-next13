@@ -1,12 +1,16 @@
 import './globals.css'
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
-import Navbar from '@/components/Navbar'
+import Header from '@/components/Header'
+import { Roboto } from 'next/font/google'
 
-const inter = Inter({ subsets: ['latin'] })
+const roboto = Roboto({
+  weight: '400',
+  subsets: ['latin'],
+  display: 'swap',
+})
+
 // importacion de clerk
 import { ClerkProvider} from '@clerk/nextjs'
-import QueryProvider from './QueryProvider'
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -21,13 +25,19 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={inter.className}>
-          <Navbar />
-          <QueryProvider>
-            <main className='pt-16'>
-              {children}
-            </main>
-          </QueryProvider>
+        <body className={`${roboto.className} grid`}>
+          <Header />
+          <main className='py-16'>
+            {children}
+          </main>
+          <footer className='h-64 bg-slate-100 p-6 mt-16'>
+            <ul className='list-none odd:text-slate-900 add:underline'>
+              <li>Contacto</li>
+              <li>Redes sociales</li>
+              <li>Terminos y condiciones</li>
+              <li className='text-center'>todos los derechos reservados</li>
+            </ul>
+          </footer>
         </body>
       </html>
     </ClerkProvider>
