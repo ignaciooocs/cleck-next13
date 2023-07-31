@@ -11,6 +11,7 @@ const NoteList = async () => {
   const fetchapi = async () => {
     'use server'
     const userId = getCookie()
+    if (typeof process.env.GET_NOTES !== 'string') throw new Error('La variable de entorno no se configuró correctamente')
 
     const res = await fetch(`${process.env.GET_NOTES}${userId}`, { cache: 'no-cache', next: { tags: ['notes'] } })
     const data = await res.json()

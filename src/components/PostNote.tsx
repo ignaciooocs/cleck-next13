@@ -15,7 +15,7 @@ const PostNote = async () => {
       content,
       userId
     }
-
+    if (typeof process.env.POST_NOTE !== 'string') throw new Error('La variable de entorno no se configuró correctamente')
     await fetch(process.env.POST_NOTE,{
       method: 'POST',
       body: JSON.stringify(newNote),
