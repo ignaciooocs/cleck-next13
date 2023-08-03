@@ -12,7 +12,7 @@ const Navbar = () => {
     <nav className='flex justify-between items-center'>
       <Link href='/' className=' flex gap-2 p-4 items-center'>
         <IoPlanetOutline className='text-3xl text-blue-500 font-bold' />
-        <span className='font-bold text-blue-500'>NoteSpace</span>
+        <h1 className='font-bold text-blue-500'>NoteSpace</h1>
       </Link>
       {!user.isLoaded
         ? <Navuser />
