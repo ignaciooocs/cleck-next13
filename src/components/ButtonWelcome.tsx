@@ -15,7 +15,7 @@ const ButtonWelcome = () => {
         onClick={() => setactive(!active)}
         className="relative z-10 flex items-center gap-2 bg-blue-500 text-white rounded-lg px-4 py-2"
       >
-        Comenzar
+        Get Started
         <IoExitOutline className="text-md font-bold" />
         {active && (
           <div className="shadow-md shadow-slate-300 flex justify-center items-center bg-white rounded-lg py-4 px-3 absolute bottom-12 -right-16">

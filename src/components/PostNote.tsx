@@ -15,7 +15,9 @@ const PostNote = async () => {
       content,
       userId
     }
-    await fetch('https://clerk-next13.vercel.app/api/add',{
+    if (typeof process.env.POST_NOTE !== 'string') throw new Error('La variable de entorno no se configuró correctamente')
+
+    await fetch(process.env.POST_NOTE, {
       method: 'POST',
       body: JSON.stringify(newNote),
       headers: { 'Content-Type': 'application/json' }
