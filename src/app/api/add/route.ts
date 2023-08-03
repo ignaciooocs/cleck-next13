@@ -1,7 +1,6 @@
 import { database } from '@/libs/database'
 import Note from '@/models/Note'
 import { NextResponse, NextRequest } from 'next/server'
-import { revalidateTag } from 'next/cache'
 
 export async function POST (req: NextRequest) {
   try {
@@ -14,7 +13,6 @@ export async function POST (req: NextRequest) {
       userId
     })
     const savedNote = await note.save()
-    revalidateTag('notes')
     return NextResponse.json(savedNote)
   } catch (error) {
     return NextResponse.json({ error: 'Error postnotes' })
